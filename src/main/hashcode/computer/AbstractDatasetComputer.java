@@ -33,8 +33,9 @@ public abstract class AbstractDatasetComputer {
 
 	public void write() throws IOException {
 		FileWriter fileWriter = new FileWriter(this.output);
-		for (String line : getResultInLines()) {
-			fileWriter.write(line);
+		List<String> lines = getResultInLines();
+		for (String line : lines) {
+			fileWriter.write(line + "\n");
 		}
 		fileWriter.close();
 	}
