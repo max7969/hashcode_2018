@@ -1,6 +1,7 @@
 package hashcode.computer;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,7 +60,8 @@ public class HashcodeDatasetComputer extends AbstractDatasetComputer {
 
 	@Override
 	public void compute() {
-		computeSimple();
+		computeWithSimpleScore();
+		System.out.println("Compute");
 	}
 
 	public void computeSimple() {
@@ -67,6 +69,23 @@ public class HashcodeDatasetComputer extends AbstractDatasetComputer {
 		for (Ride ride : rides) {
 			vehicles.get(count % vehicles.size()).ridesAssigned.add(ride);
 			count++;
+		}
+	}
+
+	public void computeWithSimpleScore() {
+		while (rides.size() > 0) {
+			Vehicle vehicle = vehicles.get(0);
+			Ride ride = vehicle.getBetterRide(rides);
+			vehicle.addNewRide(ride);
+			rides.remove(ride);
+			if (rides.size() > 0) {
+				vehicles.sort(new Comparator<Vehicle>() {
+					@Override
+					public int compare(Vehicle o1, Vehicle o2) {
+						return (int) (o1.nextStepAvailable - o2.nextStepAvailable);
+					}
+				});
+			}
 		}
 	}
 
