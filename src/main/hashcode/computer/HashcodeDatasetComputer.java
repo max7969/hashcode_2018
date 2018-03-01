@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import hashcode.data.Result;
 import hashcode.data.Ride;
 import hashcode.data.Vehicle;
 
@@ -20,9 +19,6 @@ public class HashcodeDatasetComputer extends AbstractDatasetComputer {
 	// Objets utiles
 	public List<Ride> rides = new ArrayList<>();
 	public List<Vehicle> vehicles = new ArrayList<>();
-
-	// Solution
-	List<Result> results = new ArrayList<>();
 
 	public HashcodeDatasetComputer(String fileNameIn, String fileNameOut) {
 		super(fileNameIn, fileNameOut);
